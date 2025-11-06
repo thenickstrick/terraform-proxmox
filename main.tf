@@ -13,7 +13,7 @@ provider "proxmox" {
   pm_api_url = "https://virt1.lan.thenickstrick.com:8006/api2/json"
   pm_debug      = true
   pm_log_enable = true
-  pm_log_file   = "terraform-plugin-proxmox.log"
+  pm_log_file   = "tf-proxmox.log"
   pm_log_levels = {
     _default    = "debug"
     _capturelog = ""
@@ -27,11 +27,10 @@ resource "proxmox_vm_qemu" "tc1" {
   vm_state = "stopped"
 
   agent = 1
-# TODO - use proper boot order with correct device reference
-  boot = "order=ide2"
+  boot = "order=ide0;virtio0"
   memory = 4096
   balloon = 0          
-  scsihw = "virtio-scsi-single"
+  scsihw = "virtio-scsi-pci"
   skip_ipv6 = true
 
   cpu {
@@ -39,26 +38,19 @@ resource "proxmox_vm_qemu" "tc1" {
     type = "x86-64-v2-AES"
   }
 
-# TODO - fix disk controller and device types
-  disks {
-    ide {
-      ide2 {
-        cdrom {
-          iso = "local:iso/talos-amd64.iso"
-        }
-      }
-    }
-    virtio {
-      virtio0 {
-        disk {
-          cache = "none"
-          format = "raw"
-          size = 200
-          storage = "virt1-stor"
-        }
-      }
-    }
+  disk {
+    type = "cdrom"
+    iso = "local:iso/talos-amd64.iso"
+    slot = "ide0"
+  }
 
+  disk {
+    type = "disk"
+    format = "raw"
+    iothread = true
+    size = 200
+    slot = "virtio0"
+    storage = "virt1-stor"
   }
 
   network {
@@ -68,5 +60,88 @@ resource "proxmox_vm_qemu" "tc1" {
       link_down = false
       model     = "virtio"
   }
-  
+}
+
+resource "proxmox_vm_qemu" "tc2" {
+  name        = "tc2"
+  target_node = "virt2"
+  vmid = 1072
+  vm_state = "stopped"
+
+  agent = 1
+  boot = "order=ide0;virtio0"
+  memory = 4096
+  balloon = 0          
+  scsihw = "virtio-scsi-pci"
+  skip_ipv6 = true
+
+  cpu {
+    cores = 2
+    type = "x86-64-v2-AES"
+  }
+
+  disk {
+    type = "cdrom"
+    iso = "local:iso/talos-amd64.iso"
+    slot = "ide0"
+  }
+
+  disk {
+    type = "disk"
+    format = "raw"
+    iothread = true
+    size = 200
+    slot = "virtio0"
+    storage = "virt2-stor"
+  }
+
+  network {
+      id = 0
+      bridge    = "vmbr0"
+      firewall  = true
+      link_down = false
+      model     = "virtio"
+  }
+}
+
+resource "proxmox_vm_qemu" "tc3" {
+  name        = "tc3"
+  target_node = "virt3"
+  vmid = 1073
+  vm_state = "stopped"
+
+  agent = 1
+  boot = "order=ide0;virtio0"
+  memory = 4096
+  balloon = 0          
+  scsihw = "virtio-scsi-pci"
+  skip_ipv6 = true
+
+  cpu {
+    cores = 2
+    type = "x86-64-v2-AES"
+  }
+
+  disk {
+    type = "cdrom"
+    iso = "local:iso/talos-amd64.iso"
+    slot = "ide0"
+  }
+
+  disk {
+    type = "disk"
+    format = "raw"
+    iothread = true
+    size = 200
+    slot = "virtio0"
+    storage = "virt3-stor"
+  }
+
+  network {
+      id = 0
+      bridge    = "vmbr0"
+      firewall  = true
+      link_down = false
+      model     = "virtio"
+  }
 }
