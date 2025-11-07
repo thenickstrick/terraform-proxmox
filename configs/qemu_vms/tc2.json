@@ -1,5 +1,6 @@
 
 {
+  "name": "tc2",
   "target_node": "virt2",
   "vmid": 1072,
   "vm_state": "stopped",

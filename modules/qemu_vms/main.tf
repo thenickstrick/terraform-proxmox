@@ -1,6 +1,6 @@
 
 resource "proxmox_vm_qemu" "vm" {
-  name        = var.configs.name
+  name        = var.name
   target_node = var.target_node
   vmid        = var.vmid
   vm_state    = var.vm_state
