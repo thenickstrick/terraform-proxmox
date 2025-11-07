@@ -1,0 +1,9 @@
+
+{
+  "target_node": "virt3",
+  "vmid": 1083,
+  "vm_state": "stopped",
+  "memory": 8192,
+  "cpu_cores": 4,
+  "disk_storage": "virt3-stor"
+}

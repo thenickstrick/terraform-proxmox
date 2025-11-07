@@ -1,0 +1,126 @@
+
+variable "name" {
+  description = "VM Name"
+  type        = string
+}
+
+variable "target_node" {
+  description = "Proxmox node to deploy the VM on"
+  type        = string
+}
+
+variable "vmid" {
+  description = "VM ID"
+  type        = number
+}
+
+variable "vm_state" {
+  description = "State of the VM"
+  type        = string
+  default     = "stopped"
+}
+
+variable "agent" {
+  description = "Enable QEMU guest agent"
+  type        = number
+  default     = 1
+}
+
+variable "boot" {
+  description = "Boot order"
+  type        = string
+  default     = "order=ide0;virtio0"
+}
+
+variable "memory" {
+  description = "Memory in MB"
+  type        = number
+}
+
+variable "balloon" {
+  description = "memory ballooning"
+  type        = number
+  default     = 0
+}
+
+variable "scsihw" {
+  description = "SCSI hardware type"
+  type        = string
+  default     = "virtio-scsi-pci"
+}
+
+variable "skip_ipv6" {
+  description = "Skip IPv6"
+  type        = bool
+  default     = true
+}
+
+variable "cpu_cores" {
+  description = "Number of CPU cores"
+  type        = number
+}
+
+variable "cpu_type" {
+  description = "CPU type"
+  type        = string
+  default     = "x86-64-v2-AES"
+}
+
+variable "cdrom_iso" {
+  description = "ISO image for CD-ROM"
+  type        = string
+  default     = "local:iso/talos-amd64.iso"
+}
+
+variable "disk_format" {
+  description = "Disk format"
+  type        = string
+  default     = "raw"
+}
+
+variable "disk_iothread" {
+  description = "Enable disk IO thread"
+  type        = bool
+  default     = true
+}
+
+variable "disk_size" {
+  description = "Disk size in GB"
+  type        = number
+  default     = 200
+}
+
+variable "disk_storage" {
+  description = "Storage pool for disk"
+  type        = string
+}
+
+variable "network_id" {
+  description = "Network interface ID"
+  type        = number
+  default     = 0
+}
+
+variable "network_bridge" {
+  description = "Network bridge"
+  type        = string
+  default     = "vmbr0"
+}
+
+variable "network_firewall" {
+  description = "Enable firewall on network interface"
+  type        = bool
+  default     = true
+}
+
+variable "network_link_down" {
+  description = "Set link down on network interface"
+  type        = bool
+  default     = false
+}
+
+variable "network_model" {
+  description = "Network model"
+  type        = string
+  default     = "virtio"
+}
