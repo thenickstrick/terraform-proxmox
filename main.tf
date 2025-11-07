@@ -145,3 +145,129 @@ resource "proxmox_vm_qemu" "tc3" {
       model     = "virtio"
   }
 }
+
+resource "proxmox_vm_qemu" "tw1" {
+  name        = "tx1"
+  target_node = "virt1"
+  vmid = 1081
+  vm_state = "stopped"
+
+  agent = 1
+  boot = "order=ide0;virtio0"
+  memory = 8192
+  balloon = 0          
+  scsihw = "virtio-scsi-pci"
+  skip_ipv6 = true
+
+  cpu {
+    cores = 4
+    type = "x86-64-v2-AES"
+  }
+
+  disk {
+    type = "cdrom"
+    iso = "local:iso/talos-amd64.iso"
+    slot = "ide0"
+  }
+
+  disk {
+    type = "disk"
+    format = "raw"
+    iothread = true
+    size = 200
+    slot = "virtio0"
+    storage = "virt1-stor"
+  }
+
+  network {
+      id = 0
+      bridge    = "vmbr0"
+      firewall  = true
+      link_down = false
+      model     = "virtio"
+  }
+}
+
+resource "proxmox_vm_qemu" "tw2" {
+  name        = "tw2"
+  target_node = "virt2"
+  vmid = 1082
+  vm_state = "stopped"
+
+  agent = 1
+  boot = "order=ide0;virtio0"
+  memory = 8192
+  balloon = 0          
+  scsihw = "virtio-scsi-pci"
+  skip_ipv6 = true
+
+  cpu {
+    cores = 4
+    type = "x86-64-v2-AES"
+  }
+
+  disk {
+    type = "cdrom"
+    iso = "local:iso/talos-amd64.iso"
+    slot = "ide0"
+  }
+
+  disk {
+    type = "disk"
+    format = "raw"
+    iothread = true
+    size = 200
+    slot = "virtio0"
+    storage = "virt2-stor"
+  }
+
+  network {
+      id = 0
+      bridge    = "vmbr0"
+      firewall  = true
+      link_down = false
+      model     = "virtio"
+  }
+}
+
+resource "proxmox_vm_qemu" "tw3" {
+  name        = "tw3"
+  target_node = "virt3"
+  vmid = 1083
+  vm_state = "stopped"
+
+  agent = 1
+  boot = "order=ide0;virtio0"
+  memory = 8192
+  balloon = 0          
+  scsihw = "virtio-scsi-pci"
+  skip_ipv6 = true
+
+  cpu {
+    cores = 4
+    type = "x86-64-v2-AES"
+  }
+
+  disk {
+    type = "cdrom"
+    iso = "local:iso/talos-amd64.iso"
+    slot = "ide0"
+  }
+
+  disk {
+    type = "disk"
+    format = "raw"
+    iothread = true
+    size = 200
+    slot = "virtio0"
+    storage = "virt3-stor"
+  }
+
+  network {
+      id = 0
+      bridge    = "vmbr0"
+      firewall  = true
+      link_down = false
+      model     = "virtio"
+  }
+}
