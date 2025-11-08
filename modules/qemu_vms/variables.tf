@@ -1,40 +1,8 @@
 
-variable "name" {
-  description = "VM Name"
-  type        = string
-}
-
-variable "target_node" {
-  description = "Proxmox node to deploy the VM on"
-  type        = string
-}
-
-variable "vmid" {
-  description = "VM ID"
-  type        = number
-}
-
-variable "vm_state" {
-  description = "State of the VM"
-  type        = string
-  default     = "stopped"
-}
-
 variable "agent" {
   description = "Enable QEMU guest agent"
   type        = number
   default     = 1
-}
-
-variable "boot" {
-  description = "Boot order"
-  type        = string
-  default     = "order=ide0;virtio0"
-}
-
-variable "memory" {
-  description = "Memory in MB"
-  type        = number
 }
 
 variable "balloon" {
@@ -43,16 +11,10 @@ variable "balloon" {
   default     = 0
 }
 
-variable "scsihw" {
-  description = "SCSI hardware type"
+variable "boot" {
+  description = "Boot order"
   type        = string
-  default     = "virtio-scsi-pci"
-}
-
-variable "skip_ipv6" {
-  description = "Skip IPv6"
-  type        = bool
-  default     = true
+  default     = "order=ide0;virtio0"
 }
 
 variable "cpu_cores" {
@@ -95,6 +57,16 @@ variable "disk_storage" {
   type        = string
 }
 
+variable "memory" {
+  description = "Memory in MB"
+  type        = number
+}
+
+variable "name" {
+  description = "VM Name"
+  type        = string
+}
+
 variable "network_id" {
   description = "Network interface ID"
   type        = number
@@ -119,8 +91,40 @@ variable "network_link_down" {
   default     = false
 }
 
+variable "network_macaddr" {
+  description = "MAC address"
+  type        = string
+}
+
 variable "network_model" {
   description = "Network model"
   type        = string
   default     = "virtio"
+}
+variable "scsihw" {
+  description = "SCSI hardware type"
+  type        = string
+  default     = "virtio-scsi-pci"
+}
+
+variable "skip_ipv6" {
+  description = "Skip IPv6"
+  type        = bool
+  default     = true
+}
+
+variable "target_node" {
+  description = "Proxmox node to deploy the VM on"
+  type        = string
+}
+
+variable "vm_state" {
+  description = "State of the VM"
+  type        = string
+  default     = "stopped"
+}
+
+variable "vmid" {
+  description = "VM ID"
+  type        = number
 }

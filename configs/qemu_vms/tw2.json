@@ -1,10 +1,11 @@
 
 {
-  "name": "tw2",
-  "target_node": "virt2",
-  "vmid": 1082,
-  "vm_state": "stopped",
-  "memory": 8192,
   "cpu_cores": 4,
-  "disk_storage": "virt2-stor"
+  "disk_storage": "virt2-stor",
+  "memory": 8192,
+  "name": "tw2",
+  "network_macaddr": "bc:24:11:6d:fb:98",
+  "target_node": "virt2",
+  "vm_state": "stopped",
+  "vmid": 1082
 }

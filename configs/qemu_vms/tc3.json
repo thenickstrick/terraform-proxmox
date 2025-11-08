@@ -1,10 +1,11 @@
 
 {
-  "name": "tc3",
-  "target_node": "virt3",
-  "vmid": 1073,
-  "vm_state": "stopped",
-  "memory": 4096,
   "cpu_cores": 2,
-  "disk_storage": "virt3-stor"
+  "disk_storage": "virt3-stor",
+  "memory": 4096,
+  "name": "tc3",
+  "network_macaddr": "bc:24:11:b9:04:e6",
+  "target_node": "virt3",
+  "vm_state": "stopped",
+  "vmid": 1073
 }

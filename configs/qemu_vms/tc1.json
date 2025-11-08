@@ -1,10 +1,11 @@
 
 {
-  "name": "tc1",
-  "target_node": "virt1",
-  "vmid": 1071,
-  "vm_state": "stopped",
-  "memory": 4096,
   "cpu_cores": 2,
-  "disk_storage": "virt1-stor"
+  "disk_storage": "virt1-stor",
+  "memory": 4096,
+  "name": "tc1",
+  "network_macaddr": "bc:24:11:30:68:78",
+  "target_node": "virt1",
+  "vm_state": "stopped",
+  "vmid": 1071
 }
