@@ -49,7 +49,6 @@ variable "disk_iothread" {
 variable "disk_size" {
   description = "Disk size in GB"
   type        = number
-  default     = 200
 }
 
 variable "disk_storage" {
