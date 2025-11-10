@@ -1,7 +1,14 @@
 
 {
+  "cdrom_iso": "local:iso/talos-amd64.iso",
   "cpu_cores": 2,
-  "disk_storage": "virt3-stor",
+  "disks": [
+    {
+      "slot": "virtio0",
+      "size": 200,
+      "storage": "virt3-stor"
+    }
+  ],
   "memory": 4096,
   "name": "tc3",
   "network_macaddr": "bc:24:11:b9:04:e6",

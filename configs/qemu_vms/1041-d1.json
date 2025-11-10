@@ -1,0 +1,23 @@
+
+{
+  "cdrom_iso": "",
+  "cpu_cores": 4,
+  "disks": [
+    {
+      "slot": "virtio0",
+      "size": 60,
+      "storage": "virt1-stor"
+    },
+    {
+      "slot": "virtio1",
+      "size": 240,
+      "storage": "virt1-stor"
+    }
+  ],
+  "memory": 8192,
+  "name": "d1",
+  "network_macaddr": "BC:24:11:D5:A9:7F",
+  "target_node": "virt1",
+  "vm_state": "stopped",
+  "vmid": 1041
+}

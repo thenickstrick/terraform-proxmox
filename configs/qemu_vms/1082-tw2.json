@@ -1,7 +1,14 @@
 
 {
+  "cdrom_iso": "local:iso/talos-amd64.iso",
   "cpu_cores": 4,
-  "disk_storage": "virt2-stor",
+  "disks": [
+    {
+      "slot": "virtio0",
+      "size": 200,
+      "storage": "virt2-stor"
+    }
+  ],
   "memory": 8192,
   "name": "tw2",
   "network_macaddr": "bc:24:11:6d:fb:98",
