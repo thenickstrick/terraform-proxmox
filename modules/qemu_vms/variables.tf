@@ -31,29 +31,18 @@ variable "cpu_type" {
 variable "cdrom_iso" {
   description = "ISO image for CD-ROM"
   type        = string
-  default     = "local:iso/talos-amd64.iso"
+  default     = ""
 }
 
-variable "disk_format" {
-  description = "Disk format"
-  type        = string
-  default     = "raw"
-}
-
-variable "disk_iothread" {
-  description = "Enable disk IO thread"
-  type        = bool
-  default     = true
-}
-
-variable "disk_size" {
-  description = "Disk size in GB"
-  type        = number
-}
-
-variable "disk_storage" {
-  description = "Storage pool for disk"
-  type        = string
+variable "disks" {
+  description = "List of disk configurations"
+  type = list(object({
+    slot     = string
+    size     = number
+    format   = optional(string, "raw")
+    iothread = optional(bool, true)
+    storage  = string
+  }))
 }
 
 variable "memory" {

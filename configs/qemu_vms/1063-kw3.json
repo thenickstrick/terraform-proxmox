@@ -1,0 +1,23 @@
+
+{
+  "cdrom_iso": "",
+  "cpu_cores": 4,
+  "disks": [
+    {
+      "slot": "virtio0",
+      "size": 120,
+      "storage": "virt3-stor"
+    },
+    {
+      "slot": "virtio1",
+      "size": 500,
+      "storage": "virt3-stor"
+    }
+  ],
+  "memory": 16384,
+  "name": "kw3",
+  "network_macaddr": "",
+  "target_node": "virt3",
+  "vm_state": "stopped",
+  "vmid": 1063
+}

@@ -1,4 +1,20 @@
 
+locals {
+  # Create a map of virtio disks for the disks block
+  virtio_disks = {
+    for disk in var.disks :
+    disk.slot => {
+      disk = {
+        format   = disk.format
+        iothread = disk.iothread
+        size     = disk.size
+        storage  = disk.storage
+      }
+    }
+    if can(regex("^virtio", disk.slot))
+  }
+}
+
 resource "proxmox_vm_qemu" "vm" {
 
   agent       = var.agent
@@ -17,19 +33,51 @@ resource "proxmox_vm_qemu" "vm" {
     type  = var.cpu_type
   }
 
-  disk {
-    iso  = var.cdrom_iso
-    slot = "ide0"
-    type = "cdrom"
+  dynamic "disk" {
+    for_each = var.cdrom_iso != "" ? [1] : []
+    content {
+      iso  = var.cdrom_iso
+      slot = "ide0"
+      type = "cdrom"
+    }
   }
 
-  disk {
-    format   = var.disk_format
-    iothread = var.disk_iothread
-    size     = var.disk_size
-    slot     = "virtio0"
-    storage  = var.disk_storage
-    type     = "disk"
+  disks {
+    virtio {
+      dynamic "virtio0" {
+        for_each = lookup(local.virtio_disks, "virtio0", null) != null ? [local.virtio_disks["virtio0"]] : []
+        content {
+          disk {
+            format   = virtio0.value.disk.format
+            iothread = virtio0.value.disk.iothread
+            size     = virtio0.value.disk.size
+            storage  = virtio0.value.disk.storage
+          }
+        }
+      }
+      dynamic "virtio1" {
+        for_each = lookup(local.virtio_disks, "virtio1", null) != null ? [local.virtio_disks["virtio1"]] : []
+        content {
+          disk {
+            format   = virtio1.value.disk.format
+            iothread = virtio1.value.disk.iothread
+            size     = virtio1.value.disk.size
+            storage  = virtio1.value.disk.storage
+          }
+        }
+      }
+      dynamic "virtio2" {
+        for_each = lookup(local.virtio_disks, "virtio2", null) != null ? [local.virtio_disks["virtio2"]] : []
+        content {
+          disk {
+            format   = virtio2.value.disk.format
+            iothread = virtio2.value.disk.iothread
+            size     = virtio2.value.disk.size
+            storage  = virtio2.value.disk.storage
+          }
+        }
+      }
+    }
   }
 
   network {
