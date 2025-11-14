@@ -1,0 +1,22 @@
+
+{
+  "cpu_cores": 4,
+  "disks": [
+    {
+      "slot": "virtio0",
+      "size": 60,
+      "storage": "virt3-stor"
+    },
+    {
+      "slot": "virtio1",
+      "size": 240,
+      "storage": "virt3-stor"
+    }
+  ],
+  "memory": 8192,
+  "name": "d3",
+  "network_macaddr": "bc:24:11:3b:4f:28",
+  "target_node": "virt3",
+  "vm_state": "stopped",
+  "vmid": 1043
+}

@@ -1,6 +1,5 @@
 
 {
-  "cdrom_iso": "",
   "cpu_cores": 4,
   "disks": [
     {
@@ -16,7 +15,7 @@
   ],
   "memory": 8192,
   "name": "d2",
-  "network_macaddr": "",
+  "network_macaddr": "bc:24:11:d5:4b:b1",
   "target_node": "virt2",
   "vm_state": "stopped",
   "vmid": 1042

@@ -4,7 +4,7 @@ module "qemu_vms" {
 
   for_each = local.qemu_vms
 
-  cdrom_iso       = lookup(each.value, "cdrom_iso", "")
+  # cdrom_iso       = lookup(each.value, "cdrom_iso", "")
   cpu_cores       = each.value.cpu_cores
   disks           = each.value.disks
   memory          = each.value.memory

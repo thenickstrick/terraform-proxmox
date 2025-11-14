@@ -28,21 +28,30 @@ variable "cpu_type" {
   default     = "x86-64-v2-AES"
 }
 
-variable "cdrom_iso" {
-  description = "ISO image for CD-ROM"
-  type        = string
-  default     = ""
-}
-
 variable "disks" {
   description = "List of disk configurations"
   type = list(object({
-    slot     = string
-    size     = number
     format   = optional(string, "raw")
     iothread = optional(bool, true)
-    storage  = string
+    iso      = optional(string)
+    size     = optional(number)
+    slot     = string
+    storage  = optional(string)
   }))
+  validation {
+    condition = alltrue([
+      for disk in var.disks :
+      can(regex("^ide", disk.slot)) ? (disk.iso != null && disk.iso != "") : true
+    ])
+    error_message = "Disks with 'ide' slots must have 'iso' defined."
+  }
+  validation {
+    condition = alltrue([
+      for disk in var.disks :
+      can(regex("^virtio", disk.slot)) ? (disk.size != null && disk.storage != null) : true
+    ])
+    error_message = "Disks with 'virtio' slots must have 'size' and 'storage' defined."
+  }
 }
 
 variable "memory" {

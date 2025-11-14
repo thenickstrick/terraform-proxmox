@@ -1,8 +1,11 @@
 
 {
-  "cdrom_iso": "local:iso/talos-amd64.iso",
   "cpu_cores": 4,
   "disks": [
+    {
+      "slot": "ide0",
+      "iso": "local:iso/talos-amd64.iso"
+    },
     {
       "slot": "virtio0",
       "size": 200,
